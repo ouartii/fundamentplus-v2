@@ -2,15 +2,59 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Moon, ShieldCheck } from "lucide-react";
 import { HOME, IMG, PHASES, PILLARS, DAG } from "../content/site";
 import { useSEO, ORG, WEBSITE, faqLD } from "../lib/seo";
-import { Eyebrow, HouseFrame, Pic, PhasePath, FAQ, TONE, Checklist, useReveal } from "../components/ui";
+import { Eyebrow, Pic, PhasePath, FAQ, TONE, Checklist, useReveal } from "../components/ui";
 import { ContactSection, Split } from "../components/PageTemplate";
+
+/** Signature-hero: de vier figuren uit het logo, elk gevuld met een foto uit de praktijk */
+const FIGURES = [
+  { to: "/ambulante-begeleiding/", label: "Ambulant", img: IMG.samenOpPad, color: "#9D258F", h: 410, pos: "38% 55%" },
+  { to: "/over-ons/", label: "Ons team", img: IMG.team, color: "#ED008C", h: 330, pos: "50% 50%" },
+  { to: "/begeleid-wonen/", label: "Wonen", img: IMG.woonkamerGesprek, color: "#FF8804", h: 500, pos: "58% 50%" },
+  { to: "/dagbesteding/", label: "Dag\u00ADbesteding", img: IMG.garageTeam, color: "#00AAED", h: 430, pos: "24% 50%" },
+];
+
+function HeroFigures() {
+  return (
+    <ul
+      aria-label="Ons aanbod"
+      className="flex w-full items-end gap-2.5 [--s:.62] sm:gap-4 sm:[--s:.8] lg:[--s:.86] xl:[--s:1]"
+    >
+      {FIGURES.map((f, i) => (
+        <li key={f.to} className="rise flex-1" style={{ animationDelay: `${120 + i * 110}ms` }}>
+          <Link to={f.to} className="group flex flex-col items-center gap-2.5 sm:gap-4">
+            <span aria-hidden="true" className="aspect-square w-[70%] rounded-full transition duration-300 group-hover:-translate-y-1.5" style={{ background: f.color, opacity: 0.92 }} />
+            <span
+              className="relative block w-full overflow-hidden rounded-t-[18px] sm:rounded-t-[22px]"
+              style={{ height: `calc(var(--s) * ${f.h}px)`, background: f.color }}
+            >
+              <img
+                src={`${f.img.src}-800.webp`}
+                width={800}
+                height={Math.round((800 * f.img.h) / f.img.w)}
+                alt={f.img.alt}
+                loading={i === 2 ? "eager" : "lazy"}
+                {...(i === 2 ? { fetchpriority: "high" } : {})}
+                className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                style={{ objectPosition: f.pos }}
+              />
+              <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3" style={{ background: `linear-gradient(0deg, ${f.color} 0%, ${f.color}00 100%)` }} />
+              <span className="absolute inset-x-0 bottom-0 px-2 pb-3 text-center font-display text-[12px] font-bold leading-tight text-white sm:px-3 sm:pb-4 sm:text-left sm:text-[16px]">
+                {f.label}
+              </span>
+            </span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden pb-20 pt-8 sm:pb-28 sm:pt-14">
+    <section className="relative overflow-hidden pt-8 sm:pt-14">
       <div aria-hidden="true" className="pointer-events-none absolute -left-40 top-40 h-[420px] w-[420px] rounded-full bg-sun-soft blur-3xl" />
-      <div className="wrap relative grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
-        <div>
+      <div className="wrap relative grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-end lg:gap-10">
+        <div className="lg:self-center lg:pb-24">
           <h1>
             <span className="mb-5 flex items-center gap-3 font-display text-[14px] font-bold uppercase tracking-[0.14em] text-stone">
               <span aria-hidden="true" className="inline-flex -space-x-1">
@@ -32,11 +76,8 @@ function Hero() {
             <li className="flex items-center gap-2"><ShieldCheck size={18} className="text-sky-deep" aria-hidden="true" /> WTZI-erkend en ISO 9001</li>
           </ul>
         </div>
-        <div className="relative mx-auto w-full max-w-[520px]">
-          <HouseFrame img={IMG.woonkamerGesprek} eager sizes="(min-width:1024px) 520px, 92vw" />
-          <p className="absolute -bottom-6 left-0 rotate-[-3deg] rounded-full bg-white px-5 py-3 font-display text-[15px] font-bold text-ink shadow-soft sm:left-[-24px] sm:text-[16px]">
-            <span className="text-stone">Van kwetsbaar</span> <span className="text-sun-text">naar kansrijk</span>
-          </p>
+        <div className="mx-auto w-full max-w-[640px]">
+          <HeroFigures />
         </div>
       </div>
     </section>
