@@ -22,6 +22,9 @@ Teksten: `src/content/site.ts`. Routes en sitemap: `src/routes.ts`.
 `public/api/contact.php` verwerkt contact, aanmelden, sollicitatie (met cv) en klacht. Mail naar info@fundamentplus.nl, met een gebrande bevestiging naar de aanvrager.
 Zet in Plesk `private/fundamentplus-config.php` naast httpdocs (voorbeeld in `private-voorbeeld/`), eventueel met SMTP-gegevens. Geen wachtwoorden in de repo.
 
+## Testomgeving
+Tijdelijk op **2.fundamentplus.nl** (Plesk-map `/2.fundamentplus.nl`). Daar stuurt `.htaccess` een `X-Robots-Tag: noindex`, zodat de test niet in Google komt. In Plesk: Git → branch `deploy` → pad `/2.fundamentplus.nl`.
+
 ## Livegang
 1. Repo onder ouartii, deploy via `.github/workflows/deploy.yml` naar branch `deploy`.
 2. Plesk → Git → branch `deploy` → httpdocs (eerst leegmaken).
