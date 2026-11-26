@@ -44,7 +44,7 @@ function Header() {
         <Link to="/" aria-label="FundamentPlus, naar de homepage" className="shrink-0">
           <Logo />
         </Link>
-        <nav aria-label="Hoofdmenu" className="hidden lg:block">
+        <nav aria-label="Hoofdmenu" className="hidden xl:block">
           <ul className="flex items-center gap-0.5">
             {NAV.map((n) => (
               <li key={n.to}>
@@ -69,7 +69,7 @@ function Header() {
           </Link>
           <button
             type="button"
-            className="grid h-12 w-12 place-items-center rounded-full text-ink hover:bg-white lg:hidden"
+            className="grid h-12 w-12 place-items-center rounded-full text-ink hover:bg-white xl:hidden"
             aria-expanded={open}
             aria-controls="mobiel-menu"
             aria-label={open ? "Menu sluiten" : "Menu openen"}
@@ -79,7 +79,7 @@ function Header() {
           </button>
         </div>
       </div>
-      <nav id="mobiel-menu" aria-label="Mobiel menu" hidden={!open} className="border-t border-line bg-paper lg:hidden">
+      <nav id="mobiel-menu" aria-label="Mobiel menu" hidden={!open} className="border-t border-line bg-paper xl:hidden">
         <ul className="wrap py-4">
           {[{ to: "/", label: "Home" }, ...NAV, { to: "/werken-bij/", label: "Werken bij" }].map((n) => (
             <li key={n.to}>
