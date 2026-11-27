@@ -6,11 +6,13 @@ import { Eyebrow, Checklist, FAQ, Pic, Figures } from "../components/ui";
 import { PageHero, ContactSection, Split } from "../components/PageTemplate";
 import { track } from "../lib/analytics";
 
+const STEP_TONES = ["#9D258F", "#ED008C", "#FF8804", "#00AAED"];
+
 export default function AmbulanteBegeleiding() {
   useSEO({
     title: "Ambulante Begeleiding Jongeren Amsterdam | FundamentPlus",
     description:
-      "Ambulante begeleiding voor jongeren thuis, op school of in de buurt. Ook forensisch, meidenspecifiek (Girls' Talk), met sport en VR. Vergoed via Jeugdwet of Wmo.",
+      "Ambulante begeleiding voor jongeren thuis, op school of in de buurt. Ook forensisch, meidenspecifiek (Girls' Talk) en met sport. Vaak vergoed via Jeugdwet of Wmo.",
     path: "/ambulante-begeleiding/",
     jsonld: [ORG, crumbsLD("Ambulante begeleiding", "/ambulante-begeleiding/"), serviceLD("Ambulante begeleiding voor jongeren", AMB.lead, "/ambulante-begeleiding/"), faqLD(AMB.faq)],
   });
@@ -116,16 +118,37 @@ export default function AmbulanteBegeleiding() {
         </div>
       </section>
 
-      <section id="vr" className="py-20 sm:py-28" aria-labelledby="vr-titel">
-        <div className="wrap grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <div className="lg:order-2">
-            <Pic img={IMG.vr} sizes="(min-width:1024px) 520px, 92vw" className="aspect-square w-full rounded-blob" />
+      <section id="aanvragen" className="bg-white py-20 sm:py-28" aria-labelledby="aanvragen-titel">
+        <div className="wrap">
+          <div className="max-w-2xl">
+            <Eyebrow>Zo werkt het</Eyebrow>
+            <h2 id="aanvragen-titel" className="h-lg">{AMB.steps.title}</h2>
+            <p className="mt-5 text-[18px]">{AMB.steps.lead}</p>
           </div>
-          <div>
-            <Eyebrow>Virtual Reality</Eyebrow>
-            <h2 id="vr-titel" className="h-lg">{AMB.vr.title}</h2>
-            {AMB.vr.text.map((p) => <p key={p} className="mt-5 text-[18px]">{p}</p>)}
-            <Link to="/aanmelden/" className="btn-primary mt-8">Ontvang persoonlijk advies <ArrowRight size={18} aria-hidden="true" /></Link>
+          <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {AMB.steps.items.map((st, i) => (
+              <li key={st.title} className="relative flex flex-col rounded-blob bg-paper p-7">
+                <span aria-hidden="true" className="flex items-end gap-1.5">
+                  <span className="h-8 w-8 rounded-full" style={{ background: STEP_TONES[i] }} />
+                  <span className="w-3 rounded-t" style={{ height: `${18 + i * 10}px`, background: STEP_TONES[i], opacity: 0.55 }} />
+                </span>
+                <p className="mt-6 font-display text-[15px] font-bold uppercase tracking-[0.12em] text-mute">Stap {i + 1}</p>
+                <h3 className="mt-1 text-[22px]">{st.title}</h3>
+                <p className="mt-2">{st.text}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-14 grid gap-8 rounded-blob bg-plum-soft p-8 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <h3 className="h-md">{AMB.steps.regionTitle}</h3>
+              <p className="mt-3">{AMB.steps.regionText}</p>
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {SITE.regions.map((r) => (
+                  <li key={r} className="rounded-full bg-white px-4 py-2 font-display font-bold text-ink">{r}</li>
+                ))}
+              </ul>
+            </div>
+            <Link to="/aanmelden/" className="btn-primary">Vraag ambulante begeleiding aan <ArrowRight size={18} aria-hidden="true" /></Link>
           </div>
         </div>
       </section>

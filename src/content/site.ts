@@ -46,7 +46,6 @@ export const IMG = {
   team: img("team-voordeur", "Drie medewerkers van FundamentPlus lachend bij de voordeur van het kantoor", 1400, 2100, "50% 55%"),
   lezen: img("lezen", "Medewerker van FundamentPlus leest een voetbalboek in een rode stoel", 1400, 933, "50% 40%"),
   locatie: img("locatie", "Het gebouw van FundamentPlus aan de Pierre Cuypershof in Amsterdam", 1400, 933),
-  vr: img("vr", "Illustratie van twee jongeren met een VR-bril in een kleurrijke woonkamer", 1400, 1400, "50% 70%"),
   girlsTalk: img("girls-talk", "Illustratie van een groep meiden in een oranje glazen kubus", 1024, 1024),
 };
 
@@ -56,8 +55,8 @@ export const SERVICES_NAV = [
   { to: "/ambulante-begeleiding/", label: "Ambulante begeleiding" },
 ];
 
-// Hoofdmenu: Over ons eerst, Contact niet in het menu (wel in footer, mobiel menu en knoppen)
-export const NAV = [{ to: "/over-ons/", label: "Over ons" }, ...SERVICES_NAV];
+// Hoofdmenu: alleen de diensten. Over ons en Contact staan in het mobiele menu, de footer en de knoppen
+export const NAV = SERVICES_NAV;
 
 export const FOOTER_LINKS = [
   { to: "/over-ons/", label: "Over ons" },
@@ -94,7 +93,7 @@ export const PILLARS = [
   },
   {
     title: "Innovatief",
-    text: "Sport, Virtual Reality en Girls' Talk: moderne methoden die jongeren motiveren en in beweging brengen.",
+    text: "Sport als middel en de bewezen interventie Girls' Talk: methoden die jongeren motiveren en in beweging brengen.",
     color: "sky",
   },
 ] as const;
@@ -160,11 +159,11 @@ export const HOME = {
       color: "sun",
     },
     {
-      id: "vr",
-      to: "/ambulante-begeleiding/#vr",
-      kicker: "Virtual Reality",
-      title: "Ervaren. Leren. Groeien.",
-      text: "In veilige virtuele situaties oefenen jongeren met groepsdruk, stress en lastige keuzes. Zo groeien zelfinzicht en zelfvertrouwen.",
+      id: "netwerk",
+      to: "/ambulante-begeleiding/#netwerk",
+      kicker: "Systeemgericht",
+      title: "Samen met het netwerk",
+      text: "Verandering lukt pas echt als de omgeving meebeweegt. Daarom betrekken we ouders, school, vrienden en professionals bij de begeleiding.",
       color: "sky",
     },
   ] as const,
@@ -388,12 +387,17 @@ export const AMB = {
     ],
     alert: "Maak je je zorgen over de veiligheid van een jongere? Neem direct contact op met onze begeleiders.",
   },
-  vr: {
-    title: "Virtual Reality als ervaringsmiddel",
-    text: [
-      "In een veilige virtuele omgeving oefenen jongeren met realistische situaties: groepsdruk, verleiding, grenzen en risico's.",
-      "VR helpt stress te reguleren en vergroot het zelfinzicht. Het vervangt de persoonlijke begeleiding niet, maar is er een waardevolle aanvulling op.",
+  steps: {
+    title: "Ambulante begeleiding aanvragen: zo werkt het",
+    lead: "Van eerste contact tot begeleiding aan huis, in vier stappen. Je hoeft het niet alleen uit te zoeken: we helpen je bij elke stap.",
+    items: [
+      { title: "Aanmelden", text: "Aanmelden kan via ouders, een verwijzer, jeugdbescherming, het wijkteam of door de jongere zelf." },
+      { title: "Kennismaking", text: "In een kennismakingsgesprek bespreken we de situatie, de hulpvraag en de mogelijkheden." },
+      { title: "Indicatie en plan", text: "We helpen bij het regelen van de indicatie via de Jeugdwet of Wmo en stellen samen persoonlijke doelen." },
+      { title: "Begeleiding thuis", text: "De begeleider komt naar de jongere toe: thuis, op school of in de buurt. Met duidelijke afspraken en vaste evaluaties." },
     ],
+    regionTitle: "Ambulante begeleiding in Amsterdam en omgeving",
+    regionText: "Onze ambulante begeleiders werken in de hele regio:",
   },
   faq: [
     { q: "Wat is ambulante begeleiding precies?", a: ["Ondersteuning in de eigen leefomgeving, gericht op ontwikkeling, structuur en zelfstandigheid."] },
@@ -401,7 +405,7 @@ export const AMB = {
     { q: "Wordt het vergoed via de Jeugdwet of Wmo?", a: ["In veel gevallen wel. We helpen je graag bij het regelen van de indicatie."] },
     { q: "Hoe intensief is de begeleiding?", a: ["Dat hangt af van de hulpvraag: van enkele contactmomenten per week tot intensievere begeleiding."] },
     { q: "Wat houdt meidenspecifieke begeleiding in?", a: ["Begeleiding gericht op herstel, veiligheid en weerbaarheid voor meiden die te maken hebben met mensenhandel of uitbuiting."] },
-    { q: "Hoe zetten jullie sport en VR in?", a: ["Sport versterkt zelfvertrouwen, sociale vaardigheden en veerkracht. Met VR oefenen jongeren veilig met lastige situaties en vergroten ze hun zelfinzicht."] },
+    { q: "Hoe zetten jullie sport in?", a: ["Sport versterkt zelfvertrouwen, sociale vaardigheden en veerkracht. Jongeren ervaren succes, plezier en verbinding."] },
     { q: "Hoe meld ik mijn kind aan?", a: ["Neem contact op voor een vrijblijvend kennismakingsgesprek. Samen bekijken we welk traject past."] },
   ] as QA[],
 };

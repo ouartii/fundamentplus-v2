@@ -81,7 +81,7 @@ function Header() {
       </div>
       <nav id="mobiel-menu" aria-label="Mobiel menu" hidden={!open} className="border-t border-line bg-paper xl:hidden">
         <ul className="wrap py-4">
-          {[{ to: "/", label: "Home" }, ...NAV, { to: "/werken-bij/", label: "Werken bij" }, { to: "/contact/", label: "Contact" }].map((n) => (
+          {[{ to: "/", label: "Home" }, ...NAV, { to: "/over-ons/", label: "Over ons" }, { to: "/werken-bij/", label: "Werken bij" }, { to: "/contact/", label: "Contact" }].map((n) => (
             <li key={n.to}>
               <NavLink
                 to={n.to}
