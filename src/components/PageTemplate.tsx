@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Phone, Mail, Clock, ChevronRight } from "lucide-react";
 import type { Img } from "../content/site";
 import { SITE } from "../content/site";
-import { Eyebrow, HouseFrame, Figures } from "./ui";
+import { Eyebrow, HouseFrame, Figures, Pic, type Tone } from "./ui";
 import ContactForm from "./ContactForm";
 import { track } from "../lib/analytics";
 
@@ -19,23 +19,71 @@ export function Crumbs({ name }: { name: string }) {
   );
 }
 
-/** Hero voor subpagina's: tekst links, foto in de huisvorm rechts */
-export function PageHero({
-  crumb, eyebrow, title, lead, img, children,
-}: { crumb: string; eyebrow: string; title: ReactNode; lead: string; img?: Img; children?: ReactNode }) {
+const FAMILY: { tone: Tone; hex: string; tint: string; h: number }[] = [
+  { tone: "plum", hex: "#9D258F", tint: "#E7C4E2", h: 0.62 },
+  { tone: "berry", hex: "#ED008C", tint: "#F9C2E0", h: 0.46 },
+  { tone: "sun", hex: "#FF8804", tint: "#FFD7A8", h: 0.8 },
+  { tone: "sky", hex: "#00AAED", tint: "#B3E5FA", h: 0.66 },
+];
+
+const SOFT: Record<Tone, string> = { plum: "bg-plum-soft", berry: "bg-berry-soft", sun: "bg-sun-soft", sky: "bg-sky-soft" };
+
+/**
+ * Signature voor subpagina's: de vier figuren uit het logo.
+ * De figuur van deze pagina staat groot vooraan met een foto; de andere drie staan er zacht naast.
+ */
+function FigureStage({ tone, img }: { tone: Tone; img?: Img }) {
   return (
-    <section className="relative overflow-hidden pb-16 pt-8 sm:pb-24 sm:pt-12">
-      <div className={`wrap grid items-center gap-12 ${img ? "lg:grid-cols-[1.1fr_0.9fr] lg:gap-16" : ""}`}>
-        <div>
+    <div aria-hidden={img ? undefined : true} className="flex w-full items-end gap-2 [--s:.62] sm:gap-3 sm:[--s:.8] lg:[--s:.9] xl:[--s:1]">
+      {FAMILY.map((f, i) => {
+        const main = f.tone === tone;
+        const body = main ? 400 : Math.round(f.h * 300);
+        return (
+          <div key={f.tone} className={`rise flex flex-col items-center gap-2 sm:gap-3 ${main ? "flex-[2.6]" : "flex-1"}`} style={{ animationDelay: `${(main ? 0 : 160) + i * 90}ms` }}>
+            <span className="aspect-square rounded-full" style={{ width: main ? "46%" : "72%", background: main ? f.hex : f.tint }} />
+            <div
+              className={`relative w-full overflow-hidden ${main ? "rounded-t-[26px] sm:rounded-t-[34px]" : "rounded-t-[14px] sm:rounded-t-[18px]"}`}
+              style={{ height: `calc(var(--s) * ${body}px)`, background: main ? f.hex : f.tint }}
+            >
+              {main && img && (
+                <>
+                  <Pic img={img} eager sizes="(min-width:1024px) 300px, 50vw" className="absolute inset-0 h-full w-full" />
+                  <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/4" style={{ background: `linear-gradient(0deg, ${f.hex}e6 0%, ${f.hex}00 100%)` }} />
+                </>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Hero voor subpagina's: tekst links, de figuren van FundamentPlus rechts op de 'vloer' van de sectie */
+export function PageHero({
+  crumb, eyebrow, title, lead, img, children, tone = "plum", facts,
+}: { crumb: string; eyebrow: string; title: ReactNode; lead: string; img?: Img; children?: ReactNode; tone?: Tone; facts?: string[] }) {
+  return (
+    <section className={`relative overflow-hidden ${SOFT[tone]}`}>
+      <span aria-hidden="true" className="pointer-events-none absolute -right-32 -top-32 h-[420px] w-[420px] rounded-full bg-white/50 blur-3xl" />
+      <div className="wrap relative grid gap-10 pt-8 sm:pt-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-14">
+        <div className="lg:self-center lg:pb-20">
           <Crumbs name={crumb} />
           <Eyebrow>{eyebrow}</Eyebrow>
           <h1 className="h-xl max-w-[16ch]">{title}</h1>
           <p className="lead mt-6 max-w-[58ch]">{lead}</p>
           {children && <div className="mt-8 flex flex-wrap items-center gap-3">{children}</div>}
+          {facts && (
+            <ul className="mt-8 flex flex-wrap gap-2">
+              {facts.map((f) => (
+                <li key={f} className="rounded-full bg-white/80 px-4 py-2 text-[15px] font-semibold text-ink">{f}</li>
+              ))}
+            </ul>
+          )}
         </div>
-        {img ? (
-          <HouseFrame img={img} eager className="mx-auto w-full max-w-[460px]" sizes="(min-width:1024px) 460px, 90vw" />
-        ) : null}
+        <div className={`mx-auto w-full ${img ? "max-w-[440px] lg:max-w-[480px]" : "max-w-[300px] lg:max-w-[380px]"}`}>
+          <FigureStage tone={tone} img={img} />
+        </div>
       </div>
     </section>
   );

@@ -17,14 +17,14 @@ function HeroFigures() {
   return (
     <ul
       aria-label="Ons aanbod"
-      className="flex w-full items-end gap-2.5 [--s:.62] sm:gap-4 sm:[--s:.8] lg:[--s:.86] xl:[--s:1]"
+      className="flex w-full items-end gap-2.5 [--s:.5] sm:gap-3.5 sm:[--s:.62] lg:[--s:.64] xl:[--s:.76]"
     >
       {FIGURES.map((f, i) => (
         <li key={f.to} className="rise flex-1" style={{ animationDelay: `${120 + i * 110}ms` }}>
           <Link to={f.to} className="group flex flex-col items-center gap-2.5 sm:gap-4">
-            <span aria-hidden="true" className="aspect-square w-[70%] rounded-full transition duration-300 group-hover:-translate-y-1.5" style={{ background: f.color, opacity: 0.92 }} />
+            <span aria-hidden="true" className="aspect-square w-[66%] rounded-full transition duration-300 group-hover:-translate-y-1.5" style={{ background: f.color, opacity: 0.92 }} />
             <span
-              className="relative block w-full overflow-hidden rounded-t-[18px] sm:rounded-t-[22px]"
+              className="relative block w-full overflow-hidden rounded-t-[14px] sm:rounded-t-[18px]"
               style={{ height: `calc(var(--s) * ${f.h}px)`, background: f.color }}
             >
               <img
@@ -38,7 +38,7 @@ function HeroFigures() {
                 style={{ objectPosition: f.pos }}
               />
               <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3" style={{ background: `linear-gradient(0deg, ${f.color} 0%, ${f.color}00 100%)` }} />
-              <span className="absolute inset-x-0 bottom-0 px-2 pb-3 text-center font-display text-[12px] font-bold leading-tight text-white sm:px-3 sm:pb-4 sm:text-left sm:text-[16px]">
+              <span className="absolute inset-x-0 bottom-0 px-1.5 pb-2.5 text-center font-display text-[11px] font-bold leading-tight text-white sm:px-2.5 sm:pb-3.5 sm:text-left sm:text-[14px]">
                 {f.label}
               </span>
             </span>
@@ -51,10 +51,10 @@ function HeroFigures() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden pt-8 sm:pt-14">
+    <section className="relative overflow-hidden pb-16 pt-8 sm:pb-24 sm:pt-14">
       <div aria-hidden="true" className="pointer-events-none absolute -left-40 top-40 h-[420px] w-[420px] rounded-full bg-sun-soft blur-3xl" />
-      <div className="wrap relative grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-end lg:gap-10">
-        <div className="lg:self-center lg:pb-24">
+      <div className="wrap relative grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+        <div>
           <h1>
             <span className="mb-5 flex items-center gap-3 font-display text-[14px] font-bold uppercase tracking-[0.14em] text-stone">
               <span aria-hidden="true" className="inline-flex -space-x-1">
@@ -76,7 +76,7 @@ function Hero() {
             <li className="flex items-center gap-2"><ShieldCheck size={18} className="text-sky-deep" aria-hidden="true" /> WTZI-erkend en ISO 9001</li>
           </ul>
         </div>
-        <div className="mx-auto w-full max-w-[640px]">
+        <div className="mx-auto w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[460px]">
           <HeroFigures />
         </div>
       </div>

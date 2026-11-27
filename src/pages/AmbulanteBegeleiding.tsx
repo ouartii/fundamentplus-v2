@@ -16,7 +16,7 @@ export default function AmbulanteBegeleiding() {
   });
   return (
     <>
-      <PageHero crumb="Ambulante begeleiding" eyebrow={AMB.eyebrow} title={AMB.title} lead={AMB.lead} img={IMG.samenOpPad}>
+      <PageHero crumb="Ambulante begeleiding" eyebrow={AMB.eyebrow} title={AMB.title} lead={AMB.lead} img={{ ...IMG.samenOpPad, pos: "40% 55%" }} tone="plum" facts={["Thuis, op school of in de buurt", "Licht tot intensief", "Vaak vergoed via Jeugdwet of Wmo"]}>
         <a href="#contact" className="btn-primary">Plan een kennismaking <ArrowRight size={18} aria-hidden="true" /></a>
         <Link to="/aanmelden/" className="btn-ghost">Aanmelden</Link>
       </PageHero>

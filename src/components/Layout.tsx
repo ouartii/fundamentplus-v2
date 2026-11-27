@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail, MapPin, ArrowRight, Send } from "lucide-react";
-import { NAV, FOOTER_LINKS, CERTS, SITE } from "../content/site";
+import { NAV, SERVICES_NAV, FOOTER_LINKS, CERTS, SITE } from "../content/site";
 import { HouseDefs } from "./ui";
 import { pageView, setConsent, track } from "../lib/analytics";
 
@@ -44,7 +44,7 @@ function Header() {
         <Link to="/" aria-label="FundamentPlus, naar de homepage" className="shrink-0">
           <Logo />
         </Link>
-        <nav aria-label="Hoofdmenu" className="hidden lg:block">
+        <nav aria-label="Hoofdmenu" className="hidden xl:block">
           <ul className="flex items-center gap-0.5">
             {NAV.map((n) => (
               <li key={n.to}>
@@ -69,7 +69,7 @@ function Header() {
           </Link>
           <button
             type="button"
-            className="grid h-12 w-12 place-items-center rounded-full text-ink hover:bg-white lg:hidden"
+            className="grid h-12 w-12 place-items-center rounded-full text-ink hover:bg-white xl:hidden"
             aria-expanded={open}
             aria-controls="mobiel-menu"
             aria-label={open ? "Menu sluiten" : "Menu openen"}
@@ -79,9 +79,9 @@ function Header() {
           </button>
         </div>
       </div>
-      <nav id="mobiel-menu" aria-label="Mobiel menu" hidden={!open} className="border-t border-line bg-paper lg:hidden">
+      <nav id="mobiel-menu" aria-label="Mobiel menu" hidden={!open} className="border-t border-line bg-paper xl:hidden">
         <ul className="wrap py-4">
-          {[{ to: "/", label: "Home" }, ...NAV, { to: "/werken-bij/", label: "Werken bij" }].map((n) => (
+          {[{ to: "/", label: "Home" }, ...NAV, { to: "/werken-bij/", label: "Werken bij" }, { to: "/contact/", label: "Contact" }].map((n) => (
             <li key={n.to}>
               <NavLink
                 to={n.to}
@@ -133,7 +133,7 @@ function Footer() {
           <div>
             <h2 className="font-display text-[15px] font-bold uppercase tracking-[0.12em] text-white">Begeleiding</h2>
             <ul className="mt-4 space-y-2.5">
-              {NAV.slice(0, 3).map((n) => (
+              {SERVICES_NAV.map((n) => (
                 <li key={n.to}><Link to={n.to} className="hover:text-white">{n.label}</Link></li>
               ))}
               <li><Link to="/aanmelden/" className="hover:text-white">Aanmelden</Link></li>

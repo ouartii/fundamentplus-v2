@@ -50,13 +50,14 @@ export const IMG = {
   girlsTalk: img("girls-talk", "Illustratie van een groep meiden in een oranje glazen kubus", 1024, 1024),
 };
 
-export const NAV = [
+export const SERVICES_NAV = [
   { to: "/begeleid-wonen/", label: "Woonbegeleiding" },
   { to: "/dagbesteding/", label: "Dagbesteding" },
   { to: "/ambulante-begeleiding/", label: "Ambulante begeleiding" },
-  { to: "/over-ons/", label: "Over ons" },
-  { to: "/contact/", label: "Contact" },
 ];
+
+// Hoofdmenu: Over ons eerst, Contact niet in het menu (wel in footer, mobiel menu en knoppen)
+export const NAV = [{ to: "/over-ons/", label: "Over ons" }, ...SERVICES_NAV];
 
 export const FOOTER_LINKS = [
   { to: "/over-ons/", label: "Over ons" },
