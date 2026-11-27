@@ -39,7 +39,7 @@ export default function Dagbesteding() {
   });
   return (
     <>
-      <PageHero crumb="Dagbesteding" eyebrow={DAG.eyebrow} title={DAG.title} lead={DAG.lead} img={IMG.garageTeam}>
+      <PageHero crumb="Dagbesteding" eyebrow={DAG.eyebrow} title={DAG.title} lead={DAG.lead} img={{ ...IMG.garageTeam, pos: "22% 50%" }} tone="sky" facts={["Echte werkervaring", "Kleine groepen", "Vaste dagstructuur"]}>
         <a href="#contact" className="btn-primary">Plan een kennismaking <ArrowRight size={18} aria-hidden="true" /></a>
         <Link to="/aanmelden/" className="btn-ghost">Meld je kind aan</Link>
       </PageHero>

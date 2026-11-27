@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail, MapPin, ArrowRight, Send } from "lucide-react";
-import { NAV, FOOTER_LINKS, CERTS, SITE } from "../content/site";
+import { NAV, SERVICES_NAV, FOOTER_LINKS, CERTS, SITE } from "../content/site";
 import { HouseDefs } from "./ui";
 import { pageView, setConsent, track } from "../lib/analytics";
 
@@ -81,7 +81,7 @@ function Header() {
       </div>
       <nav id="mobiel-menu" aria-label="Mobiel menu" hidden={!open} className="border-t border-line bg-paper xl:hidden">
         <ul className="wrap py-4">
-          {[{ to: "/", label: "Home" }, ...NAV, { to: "/werken-bij/", label: "Werken bij" }].map((n) => (
+          {[{ to: "/", label: "Home" }, ...NAV, { to: "/werken-bij/", label: "Werken bij" }, { to: "/contact/", label: "Contact" }].map((n) => (
             <li key={n.to}>
               <NavLink
                 to={n.to}
@@ -133,7 +133,7 @@ function Footer() {
           <div>
             <h2 className="font-display text-[15px] font-bold uppercase tracking-[0.12em] text-white">Begeleiding</h2>
             <ul className="mt-4 space-y-2.5">
-              {NAV.slice(0, 3).map((n) => (
+              {SERVICES_NAV.map((n) => (
                 <li key={n.to}><Link to={n.to} className="hover:text-white">{n.label}</Link></li>
               ))}
               <li><Link to="/aanmelden/" className="hover:text-white">Aanmelden</Link></li>

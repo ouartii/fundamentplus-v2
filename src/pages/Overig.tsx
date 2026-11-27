@@ -17,7 +17,7 @@ export function OverOns() {
   });
   return (
     <>
-      <PageHero crumb="Over ons" eyebrow={OVER.eyebrow} title={OVER.title} lead={OVER.lead} img={IMG.team}>
+      <PageHero crumb="Over ons" eyebrow={OVER.eyebrow} title={OVER.title} lead={OVER.lead} img={IMG.team} tone="berry">
         <Link to="/werken-bij/" className="btn-primary">Werken bij ons <ArrowRight size={18} aria-hidden="true" /></Link>
         <a href="#contact" className="btn-ghost">Contact</a>
       </PageHero>
@@ -72,7 +72,7 @@ export function WerkenBij() {
   });
   return (
     <>
-      <PageHero crumb="Werken bij" eyebrow={WERKEN.eyebrow} title={WERKEN.title} lead={WERKEN.lead} img={IMG.katSnoepje}>
+      <PageHero crumb="Werken bij" eyebrow={WERKEN.eyebrow} title={WERKEN.title} lead={WERKEN.lead} img={{ ...IMG.gesprek, pos: "30% 40%" }} tone="sun" facts={["Parttime en fulltime", "Amsterdam en Almere"]}>
         <a href="#solliciteren" className="btn-primary">Solliciteer direct <ArrowRight size={18} aria-hidden="true" /></a>
       </PageHero>
       <section className="bg-white py-20 sm:py-28" aria-labelledby="functies">
@@ -220,7 +220,7 @@ export function Klachten() {
   });
   return (
     <>
-      <PageHero crumb="Klachtenreglement" eyebrow="Klachten" title={KLACHT.title} lead={KLACHT.lead}>
+      <PageHero crumb="Klachtenreglement" eyebrow="Klachten" title={KLACHT.title} lead={KLACHT.lead} tone="sky">
         <a href="#klacht-indienen" className="btn-primary">Klacht indienen <ArrowRight size={18} aria-hidden="true" /></a>
         <Link to="/jeugdstem/" className="btn-ghost">Hulp van een vertrouwenspersoon</Link>
       </PageHero>
@@ -275,7 +275,7 @@ export function Jeugdstem() {
   });
   return (
     <>
-      <PageHero crumb="JeugdStem" eyebrow="Vertrouwenspersoon" title={JEUGDSTEM.title} lead={JEUGDSTEM.lead}>
+      <PageHero crumb="JeugdStem" eyebrow="Vertrouwenspersoon" title={JEUGDSTEM.title} lead={JEUGDSTEM.lead} tone="plum">
         <a href={JEUGDSTEM.phoneHref} className="btn-primary"><Phone size={18} aria-hidden="true" /> Bel gratis {JEUGDSTEM.phone}</a>
         <a href={JEUGDSTEM.url} target="_blank" rel="noopener" className="btn-ghost"><MessageCircle size={18} aria-hidden="true" /> Chat via jeugdstem.nl</a>
       </PageHero>

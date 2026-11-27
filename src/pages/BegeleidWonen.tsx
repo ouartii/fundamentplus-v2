@@ -15,7 +15,7 @@ export default function BegeleidWonen() {
   });
   return (
     <>
-      <PageHero crumb="Woonbegeleiding" eyebrow={WONEN.eyebrow} title={WONEN.title} lead={WONEN.lead} img={IMG.woonkamer2}>
+      <PageHero crumb="Woonbegeleiding" eyebrow={WONEN.eyebrow} title={WONEN.title} lead={WONEN.lead} img={{ ...IMG.woonkamerGesprek, pos: "58% 50%" }} tone="sun" facts={["24-uursbegeleiding", "Ook crisisplekken", "Zelf aanmelden kan"]}>
         <Link to="/aanmelden/" className="btn-primary">Meld je aan <ArrowRight size={18} aria-hidden="true" /></Link>
         <a href="#contact" className="btn-ghost">Plan een kennismaking</a>
       </PageHero>
